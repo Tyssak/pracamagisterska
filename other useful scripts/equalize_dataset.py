@@ -22,11 +22,11 @@ def select_random_files(source_folder, num_files):
 
 
 def main():
-    source_folder = r"F:\substraction10\test"  # Specify the path to your folder
-    save_folder = r"G:\do_magisterki\datasety\RAVDESS\mixed\equalized\substraction10\test"
+    source_folder = r"F:\CANNY\test"  # Specify the path to your folder
+    save_folder = r"G:\do_magisterki\datasety\RAVDESS\mixed\equalized\CANNY\test"
     #num_files = 2624  # Specify the number of files you want to select
-    num_files = 704
-    #num_files = 832
+    #num_files = 704
+    num_files = 832
     #num_files = 3264
     #num_files = 5824
     #num_files = 1536

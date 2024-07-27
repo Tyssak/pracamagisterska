@@ -4,6 +4,8 @@ from enum import Enum
 
 
 class FiltersOption(Enum):
+    ADD_FRAMES = 12
+    SUBSTRACT_FRAMES = 13
     NO_FILTER = 0
     MEDIAN_FILTER = 1
     GAUSSIAN_FILTER = 3
@@ -22,7 +24,6 @@ class Filters:
 
     def init_canny(self, frame, sigma):
         gray_image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        # Zero-parameter, automatic Canny edge detection with Python and OpenCV
         v = np.median(gray_image)
 
         # ---- Apply automatic Canny edge detection using the computed median----

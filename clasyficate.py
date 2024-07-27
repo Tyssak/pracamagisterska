@@ -2,58 +2,58 @@ import cv2
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 import numpy as np
-from collections import Counter
 
 
 class Clasyficator:
     def __init__(self, model_path):
+        """
+        Initialize the Clasyficator class.
+
+        Parameters:
+        - model_path: str path to the pre-trained emotion recognition model
+        """
         self.prev_recognitions = []
         self.emotion_model = load_model(model_path)
-        #self.emotion_labels = ['Anger', 'Contempt', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise'] #CK+
-        #self.emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise'] #FER2013
-        self.emotion_labels = ['Calm', 'Happy', 'Sad', 'Angry', 'Fearful', 'Disgust', 'Surprised'] #RAVDESS
-        #self.emotion_labels = ['Neutral', 'Calm', 'Happy', 'Sad', 'Angry', 'Fearful', 'Disgust', 'Surprised']  # RAVDESS 8
-        # self.emotion_labels = ['Calm', 'Happy', 'Sad', 'Angry', 'Fearful', 'Surprised']  # RAVDESS 6
-
-        # # Check the input shape using summary()
-        # self.emotion_model.summary()
-        #
-        # # Alternatively, you can directly access the input shape attribute
-        # input_shape = self.emotion_model.input_shape
-        # print("Input shape:", input_shape)
+        #self.emotion_labels = ['Zlosc', 'Pogarda', 'Wstret', 'Zlosc', 'Szczescie', 'Smutek', 'Zaskoczenie'] # CK+
+        #self.emotion_labels = ['Zlosc', 'Wstret', 'Zlosc', 'Szczescie', 'Spokoj', 'Smutek', 'Zaskoczenie'] # FER2013
+        self.emotion_labels = ['Spokoj', 'Szczescie', 'Smutek', 'Zlosc', 'Strach', 'Wstret', 'Zaskoczenie']  # RAVDESS
 
     def get_most_common_index(self, predictions):
-        #print(predictions)
+        """
+         Compute the most common index from the previous recognitions.
+
+         Parameters:
+         - predictions: array, current predictions from the model
+
+         Returns:
+         - predictions: array, averaged predictions considering the previous recognitions
+         """
         max_prev_recognitions = 5
         self.prev_recognitions.append(predictions)
         self.prev_recognitions = self.prev_recognitions[-max_prev_recognitions:]
         if self.prev_recognitions:
             predictions = np.mean(self.prev_recognitions, axis=0)
         return predictions
+
     def classify(self, frame):
-        # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        #
-        # # Resize and normalize the grayscale face
-        # gray = cv2.resize(gray, (48, 48))
+        """
+        Classify the emotion in the given frame.
+
+        Parameters:
+        - frame: array, the input image/frame to classify
+
+        Returns:
+        - text: str, the predicted emotion and its probability
+        """
         gray = cv2.resize(frame, (227, 227))
         gray = np.expand_dims(gray, axis=0)
-        gray = gray / 255.0  # Normalize the image
-
-        # Make predictions using the emotion recognition model
+        gray = gray / 255.0
         predictions = self.emotion_model.predict(gray)
-        #text = f'Emotion: {predicted_emotion}, Probability: {probability:.2f}%'
         predictions = self.get_most_common_index(predictions)
         emotion_index = np.argmax(predictions)
         predicted_emotion = self.emotion_labels[emotion_index]
         probability = predictions[0][emotion_index] * 100
-
-        # if probability < 50.0:
-        #     predicted_emotion = 'Neutral'
-
-        x, y = frame.shape[0], frame.shape[1]
-        # Display the predicted emotion and probability on the frame
-        text = f'Emotion: {predicted_emotion}, Probability: {probability:.2f}%'
+        text = f'emocja: {predicted_emotion}, p.qq {probability:.2f}%'
         print(text)
-        #cv2.putText(frame, text, (y // 2, x // 2), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 
         return text

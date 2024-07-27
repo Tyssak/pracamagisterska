@@ -1,5 +1,6 @@
-stare_pliki/
+old_files/
 models/
+other useful scripts/
 *.h5
 # Byte-compiled / optimized / DLL files
 __pycache__/

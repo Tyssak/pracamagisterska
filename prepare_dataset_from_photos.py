@@ -1,8 +1,18 @@
 import os
-from pre_processor_one_face import PreProcessor
+from pre_processor_prepare_dataset import PreProcessor
 from filters import FiltersOption
 
 def create_new_folder(path, sub_folder):
+    """
+    Creates a new folder at the specified path and sub-folder name.
+
+    Args:
+        path: The parent directory where the new folder will be created.
+        sub_folder: The name of the sub-folder to create.
+
+    Returns:
+        new_path: The path of the newly created folder if successful, else None.
+    """
     new_path = os.path.join(path, sub_folder)
 
     try:
@@ -13,10 +23,10 @@ def create_new_folder(path, sub_folder):
         return None
 
 # Define the directory containing the MKV files
-input_directory = r"G:\do_magisterki\datasety\RAF DB\96\og_dataset\test"
-filter_option = FiltersOption.NO_FILTER
+input_directory = r"G:\do_magisterki\datasety\FER2013\archive\test"
+filter_option = FiltersOption.CLAHE
 
-save_directory = r"G:\do_magisterki\datasety\RAF DB\ne_mask\test"
+save_directory = r"G:\do_magisterki\datasety\FER2013\227\test"
 
 processed_images = 0
 total_images = sum(len(files) for _, _, files in os.walk(input_directory))

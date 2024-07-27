@@ -1,10 +1,20 @@
 import os
 from moviepy.editor import VideoFileClip
 import shutil
-from pre_processor_one_face import PreProcessor
+from pre_processor_prepare_dataset import PreProcessor
 from filters import FiltersOption
 
 def create_new_folder(path, sub_folder):
+    """
+    Creates a new folder at the specified path and sub-folder name.
+
+    Args:
+        path: The parent directory where the new folder will be created.
+        sub_folder: The name of the sub-folder to create.
+
+    Returns:
+        new_path: The path of the newly created folder if successful, else None.
+    """
     new_path = os.path.join(path, sub_folder)
 
     try:
@@ -17,14 +27,14 @@ def create_new_folder(path, sub_folder):
 # Define the directory containing the MKV files
 input_directory = r"F:\RAVDESS dataset no neutral\test"
 
-save_folder = r"F:\substraction10\test"
+save_folder = r"F:\3frames_nomask\test"
 filter_option = FiltersOption.NO_FILTER
 
 # input_directory = r"G:\do_magisterki\ja\test"
 # filter_option = FiltersOption.NO_FILTER
 # save_folder = r"G:\do_magisterki\ja\test wynik\substraction_minus"
 
-substraction = True
+substraction = False
 dataset = 1 # 0 for devemo, 1 for RAVDESS, 2 for other
 
 # Create output directory if it doesn't exist
@@ -34,18 +44,45 @@ if not os.path.exists(save_folder):
 
 # Function to extract emotion from file name
 def extract_emotion_from_devemo(file_name):
+    """
+    Extracts emotion label from Devemo dataset file name.
+
+    Args:
+        file_name: The name of the file.
+
+    Returns:
+        Emotion label extracted from the file name.
+    """
     # Split file name by underscores
     parts = file_name.split('_')
     # Emotion is the fourth element in the split parts
     return parts[4]
 
 def extract_emotion_from_RAVDESS(file_name):
+    """
+     Extracts emotion label from RAVDESS dataset file name.
+
+     Args:
+         file_name: The name of the file.
+
+     Returns:
+         Emotion label extracted from the file name.
+     """
     # Split file name by underscores
     parts = file_name.split('-')
     # Emotion is the fourth element in the split parts
     return parts[2]
 
 def is_emotion_strong_in_RAVDESS(file_name):
+    """
+    Checks if the emotion is considered strong in the RAVDESS dataset based on the file name.
+
+    Args:
+        file_name: The name of the file.
+
+    Returns:
+        True if the emotion is strong, False otherwise.
+    """
     # Split file name by underscores
     parts = file_name.split('-')
     # Emotion is the fourth element in the split parts
@@ -56,6 +93,15 @@ def is_emotion_strong_in_RAVDESS(file_name):
 
 # Function to meintain the same actors in the files with similar name (to easier divide test and treinging group)
 def rearrange_name_for_RAVDESS(file_name):
+    """
+    Rearranges the file name for RAVDESS dataset to maintain consistency in file names.
+
+    Args:
+        file_name: The name of the file.
+
+    Returns:
+        New file name with rearranged parts.
+    """
     # Split the file name by '.'
     name_parts = file_name.split('.')
     # Split the main name part by '-'
@@ -74,6 +120,15 @@ def rearrange_name_for_RAVDESS(file_name):
 
 
 def extract_frames(movie, times, imgdir, name):
+    """
+    Extracts frames from a video file at specified times and saves them as images.
+
+    Args:
+        movie: Path to the video file.
+        times: List of times (in seconds) at which frames are to be extracted.
+        imgdir: Directory to save the extracted frames.
+        name: Base name for the saved frame images.
+    """
     if not os.path.exists(imgdir):
         os.makedirs(imgdir)
 
@@ -106,7 +161,6 @@ for subfolder in subfolders:
             os.makedirs(save_path, exist_ok=True)
             # Read video file
             video_path = os.path.join(input_folder, file_name)
-            #fd = FaceDetector()
             fd = PreProcessor()
             print(video_path)
             if dataset == 1:
