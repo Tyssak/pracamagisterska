@@ -70,8 +70,8 @@ pip install -r requirements.txt
  ```bash
 
 
-# run module (example: mnist as your main contribution)   
-python main.py (by default uses model_eq.h5 file as model)
+# run module  (by default uses model_eq.h5 file as model)
+python main.py
 
 # 
 ```
