@@ -26,27 +26,21 @@ Celem pracy było zbadanie wpływu różnych metod wstępnego przetwarzania obra
 
 ## Wyniki
 
+Wyniki dla baz danych ze zdjęciami:
+
 | **Baza danych** | **Dokładność bazowa** | **Normalizacja bez maski** | **Normalizacja z maską** | **Normalizacja + SOBEL** | **Normalizacja + CANNY** | **Normalizacja + CLAHE** |
 |-----------------|-----------------------|----------------------------|--------------------------|--------------------------|--------------------------|--------------------------|
 | **CK+**         | 0,8283                | 0,8788                     | 0,8485                   | **0,9040**                | 0,8030                   | 0,8788                   |
 | **FER2013**     | 0,6967                | **0,6987**                 | 0,6928                   | 0,6562                   | 0,6240                   | 0,6920                   |
 | **RAFDB**       | 0,8338                | 0,8342                     | **0,8344**               | 0,7120                   | 0,6932                   | 0,8322                   |
 
+Wyniki dla materiałów wideo (baza RAVDESS - 7 emocji: spokój, radość, smutek, złość, strach, zniesmaczenie, zaskoczenie):
 
-\begin{table}[htbp]
-    \centering
-    \caption{Najlepsze uzyskane pomiary dla zbioru RAVDESS z różnymi technikami przetwarzania obrazów}
-    \begin{tabular}{|m{1.8cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|}
-        \hline
-        \textbf{klasyfikator} & \textbf{dokładność bazowa} & \textbf{normalizacja bez maski} & \textbf{normalizacja z maską} & \textbf{normalizacja + SOBEL} & \textbf{normalizacja + CANNY} & \textbf{normalizacja + CLAHE} \\
-        \hline
-        \textbf{CNN2D} & 0,6006 & 0,6147 & 0,6086 & 0,6256 & 0,6343 & \textbf{0,6352} \\
-        \hline
-        \textbf{AlexNet} & 0,6845 & 0,6842 & 0,6537 & 0,5138 & 0,4502 & \textbf{0,6928} \\
-        \hline
-    \end{tabular}
-    \label{tab:resultsvideos1}
-\end{table}
+| **Klasyfikator** | **Dokładność bazowa** | **Normalizacja bez maski** | **Normalizacja z maską** | **Normalizacja + SOBEL** | **Normalizacja + CANNY** | **Normalizacja + CLAHE** |
+|------------------|-----------------------|----------------------------|--------------------------|--------------------------|--------------------------|--------------------------|
+| **CNN2D**        | 0,6006                | 0,6147                     | 0,6086                   | 0,6256                   | 0,6343                   | **0,6352**               |
+| **AlexNet**      | 0,6845                | 0,6842                     | 0,6537                   | 0,5138                   | 0,4502                   | **0,6928**               |
+
 
 ## How to run   
 First, install dependencies   
