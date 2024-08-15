@@ -22,10 +22,10 @@ Conference
 </div>
  
 ## Opis   
-Celem pracy było zbadanie wpływu różnych metod wstępnego przetwarzania obrazu na skuteczność rozpoznawania emocji przez sieci neuronowe na podstawie zdjęć i materiałów wideo. Zbadane metody to normalizacja przestrzenna łączona z takimi metodami jak normalizacja intensywności metodą CLAHE, wykrywanie krawędzi filtrem Sobela i metodą Canny, oraz dodawanie i odejmowanie klatek. W pracy wykorzystano klasyfikatory AlexNet oraz dedykowaną sieć CNN. Spośród wszystkich przetestowanych metod najskuteczniejsza okazała się ta, oparta o dodawanie klatek. Metoda ta, do działania wykorzystuje także normalizację przestrzenną. Ogólny model rozwiązania jwygląda następująco: 
-#
+Celem pracy było zbadanie wpływu różnych metod wstępnego przetwarzania obrazu na skuteczność rozpoznawania emocji przez sieci neuronowe na podstawie zdjęć i materiałów wideo. Zbadane metody to normalizacja przestrzenna łączona z takimi metodami jak normalizacja intensywności metodą CLAHE, wykrywanie krawędzi filtrem Sobela i metodą Canny, oraz dodawanie i odejmowanie klatek. W pracy wykorzystano klasyfikatory AlexNet oraz dedykowaną sieć CNN. Spośród wszystkich przetestowanych metod najskuteczniejsza okazała się ta, oparta o dodawanie klatek, polegająca na przypidsywaniu 3 kolejnych klatek w małych odstępach czasu do kanałów R, G i B. Metoda ta, do działania wykorzystuje także normalizację przestrzenną, pozycjonującą i skalującą twarz w oparciu o pozycję punktów charakterysytcznych twarzy. Ogólny model rozwiązania prezentuje się następująco: 
+<div align="center">  
 ![ModelRoziwazania](https://github.com/user-attachments/assets/05c95074-30d5-4596-9cce-79f8b4bb4965)
-
+</div>
 
 ## Wyniki
 
