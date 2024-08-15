@@ -44,6 +44,12 @@ Wyniki dla materiałów wideo (baza RAVDESS - 7 emocji: spokój, radość, smute
 | **CNN2D**        | 0,6006                | 0,6147                     | 0,6086                   | 0,6256                   | 0,6343                   | **0,6352**               |
 | **AlexNet**      | 0,6845                | 0,6842                     | 0,6537                   | 0,5138                   | 0,4502                   | **0,6928**               |
 
+| **Klasyfikator** | **Dokładność bazowa** | **Odejmowanie klatek z maską** | **Odejmowanie klatek (brak maski)** | **Dodawanie klatek z maską** | **Dodawanie klatek (brak maski)** |
+|------------------|-----------------------|--------------------------------|------------------------------------|------------------------------|----------------------------------|
+| **CNN2D**        | 0,6006                | 0,4567                         | 0,4922                             | **0,6492**                    | 0,6274                           |
+| **AlexNet**      | 0,6552                | 0,5931                         | 0,6200                             | **0,7009**                    | 0,6804                           |
+
+
 
 ## How to run   
 First, install dependencies   
