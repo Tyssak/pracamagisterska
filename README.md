@@ -26,22 +26,12 @@ Celem pracy było zbadanie wpływu różnych metod wstępnego przetwarzania obra
 
 ## Wyniki
 
-\begin{table}[htbp]
-    \centering
-    \caption{Najlepsze uzyskane pomiary dla zbiorów CK+, FER2013 i RAF-DB z różnymi technikami przetwarzania obrazów (klasyfikator CNN2D)}
-    \begin{tabular}{|m{1.4cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|}
-        \hline
-        \textbf{baza \qquad danych} & \textbf{dokładność bazowa} & \textbf{normalizacja bez maski} & \textbf{normalizacja z maską} & \textbf{normalizacja + SOBEL} & \textbf{normalizacja + CANNY} & \textbf{normalizacja + CLAHE} \\
-        \hline
-        \textbf{CK+} & 0,8283 & 0,8788 & 0,8485 & \textbf{0,9040} & 0,8030 & 0,8788 \\
-        \hline
-        \textbf{FER2013} & 0,6967 & \textbf{0,6987} & 0,6928 & 0,6562 & 0,6240 & 0,6920 \\
-        \hline
-        \textbf{RAFDB} & 0,8338 & 0,8342 & \textbf{0,8344} & 0,7120 & 0,6932 & 0,8322 \\
-        \hline
-    \end{tabular}
-    \label{tab:resultsphotos}
-\end{table}
+| **Baza danych** | **Dokładność bazowa** | **Normalizacja bez maski** | **Normalizacja z maską** | **Normalizacja + SOBEL** | **Normalizacja + CANNY** | **Normalizacja + CLAHE** |
+|-----------------|-----------------------|----------------------------|--------------------------|--------------------------|--------------------------|--------------------------|
+| **CK+**         | 0,8283                | 0,8788                     | 0,8485                   | **0,9040**                | 0,8030                   | 0,8788                   |
+| **FER2013**     | 0,6967                | **0,6987**                 | 0,6928                   | 0,6562                   | 0,6240                   | 0,6920                   |
+| **RAFDB**       | 0,8338                | 0,8342                     | **0,8344**               | 0,7120                   | 0,6932                   | 0,8322                   |
+
 
 \begin{table}[htbp]
     \centering
