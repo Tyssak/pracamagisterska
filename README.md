@@ -53,58 +53,38 @@ Wyniki dla materiałów wideo (baza RAVDESS - 7 emocji: spokój, radość, smute
 
 
 
-## How to run   
-First, install dependencies   
+## Jak uruchomić
+Najpierw zainstaluj wymagane zależności: 
 ```bash
-# clone project   
+# Sklonuj repozytorium  
 git clone https://github.com/Tyssak/pracamagisterska.git
 
-# install project   
+# Zainstaluj projekt   
 cd pracamagisterska
 pip install -e .   
 pip install -r requirements.txt
 
-# download model_eq.h5 file and place it inside project folder
+# Pobierz plik model_eq.h5 i umieść go w katalogu projektu lub samemu wytrenuj model (parz rozdział trening)
  ```   
- Next, navigate to any file and run it.   
+
  ```bash
 
 
-# run module  (by default uses model_eq.h5 file as model)
+# Uruchom moduł (domyślnie używa pliku model_eq.h5 jako modelu)
 python main.py
 
+# Lista wszystkich skryptów:
+- clasyficate.py: Zawiera klasę Clasyficator, która klasyfikuje emocje na podstawie dostarczonej klatki. Wywoływana przez klasę PreProcessor ze skryptu pre_processor_classify.
+- filters.py: Zawiera klasę FiltersOption implementującą różne filtry zastosowane w algorytmie.
+- main.py: Skrypt odpowiedzialny za GUI oraz wywołujący klasę PreProcessor ze skryptu pre_processor_classify.
+- model_training.ipynb: Skrypt do trenowania modelu. Domyślnie wykorzystuje dataset znajdujący się w folderze /kaggle/input/laczone/wszystkie, który został uprzednio podzielony na dwa podfoldery: jeden w folderze train oraz drugi w folderze test. Domyślna liczba klas w datasecie wynosi 7, a rozmiar obrazów to (227, 227) z trzema kanałami. Domyślnym klasyfikatorem jest AlexNet. Po odkomentowaniu oznaczonej części kodu, można użyć klasyfikatora CNN2D.
+- pre_processor_classify.py: Zawiera klasę PreProcessor, implementującą główną logikę przetwarzania wstępnego oraz kilka innych przydatnych funkcji podczas przetwarzania wstępnego.
+- pre_processor_prepare_dataset.py: Nieznacznie zmodyfikowana wersja klasy PreProcessor, przystosowana do przygotowania datasetu do treningu.
+- prepare_dataset_from_photos.py: Skrypt pobierający zdjęcia ze ścieżki input_directory, a następnie wykonujący na nich preprocessing za pomocą klasy PreProcessor ze skryptu pre_processor_prepare_dataset. Przetworzone zdjęcia są zapisywane do ścieżki save_directory.
+- prepare_dataset_from_videos.py: Skrypt działający analogicznie jak prepare_dataset_from_photos.py, ale dla folderu z materiałami wideo.
+- folder other_useful_scripts: Inne skrypty niewymagane do działania programu, ale przydatne podczas przygotowywania datasetów (np. wyrównanie wielkości klas, parsery, wykreślanie wykresów, czy archiwalne wersje algorytmu wykonującego preprocessing).
 # 
 ```
 
-## Imports
-This project is setup as a package which means you can now easily import any file into any other file like so:
-```python
-from project.datasets.mnist import mnist
-from project.lit_classifier_main import LitClassifier
-from pytorch_lightning import Trainer
-
-# model
-model = LitClassifier()
-
-# data
-train, val, test = mnist()
-
-# train
-trainer = Trainer()
-trainer.fit(model, train, val)
-
-# test using the best model!
-trainer.test(test_dataloaders=test)
-```
-
-### Citation   
-```
-@article{YourName,
-  title={Your Title},
-  author={Your team},
-  journal={Location},
-  year={Year}
-}
-```   
 
  
