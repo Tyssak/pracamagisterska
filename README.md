@@ -65,14 +65,10 @@ pip install -e .
 pip install -r requirements.txt
 
 # Pobierz plik model_eq.h5 i umieść go w katalogu projektu lub samemu wytrenuj model (parz rozdział trening)
- ```   
-
- ```bash
-
-
 # Uruchom moduł (domyślnie używa pliku model_eq.h5 jako modelu)
 python main.py
 
+ ```   
 # Lista wszystkich skryptów:
 - clasyficate.py: Zawiera klasę Clasyficator, która klasyfikuje emocje na podstawie dostarczonej klatki. Wywoływana przez klasę PreProcessor ze skryptu pre_processor_classify.
 - filters.py: Zawiera klasę FiltersOption implementującą różne filtry zastosowane w algorytmie.
@@ -84,6 +80,10 @@ python main.py
 - prepare_dataset_from_videos.py: Skrypt działający analogicznie jak prepare_dataset_from_photos.py, ale dla folderu z materiałami wideo.
 - folder other_useful_scripts: Inne skrypty niewymagane do działania programu, ale przydatne podczas przygotowywania datasetów (np. wyrównanie wielkości klas, parsery, wykreślanie wykresów, czy archiwalne wersje algorytmu wykonującego preprocessing).
 # 
+
+## Trening własnego modelu
+ ```bash
+# W celu wytrenowania własnego modelu...
 ```
 
 
