@@ -1,7 +1,7 @@
 
 ---
 # PL
-
+---
 <div align="center">    
  
 #  Analiza algorytmów przetwarzania obrazu wideo z nagraniami twarzy w celu poprawy jakości wykrywania emocji
