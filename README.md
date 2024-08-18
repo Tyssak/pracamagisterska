@@ -64,7 +64,7 @@ cd pracamagisterska
 pip install -e .   
 pip install -r requirements.txt
 
-# Pobierz plik model_eq.h5 i umieść go w katalogu projektu lub samemu wytrenuj model (parz rozdział trening)
+# Pobierz plik model_eq.h5 i umieść go w katalogu projektu lub samemu wytrenuj model (patrz rozdział trening własnego modelu)
 # Uruchom moduł (domyślnie używa pliku model_eq.h5 jako modelu)
 python main.py
 
@@ -81,29 +81,32 @@ python main.py
 - folder other_useful_scripts: Inne skrypty niewymagane do działania programu, ale przydatne podczas przygotowywania datasetów (np. wyrównanie wielkości klas, parsery, wykreślanie wykresów, czy archiwalne wersje algorytmu wykonującego preprocessing).
 # 
 
-
-# W celu wytrenowania własnego modelu
-
 ## Przygotowanie datasetu
 
-Dla datasetu ze zdjęciami:
-W skrypcie prepare_dataset_from_photos.py.
-wybrać:
+# Dla datasetu ze zdjęciami:
+W skrypcie prepare_dataset_from_photos.py wybrać:
 input_directory - folder z datasetem treningowym bądź testowym uprzednio podzielonym na klasy - każda z klas w osobnym podfolerze.
 filter_option - wybrany filer z listy Enum klasy FilterOption
 save_directory - folder do którego zostaną zapisane zdjęcia po wykonaniu preprocessingu
-
+# 
 Dla datasetu z materiałami wideo  (obsługiwane formaty: mp4 i mkv)
-W skrypcie prepare_dataset_from_photos.py.
-wybrać:
+W skrypcie prepare_dataset_from_photos.py wybrać:
 input_directory - folder z datasetem treningowym bądź testowym uprzednio podzielonym na klasy - każda z klas w osobnym podfolerze (chyba, że wartość w dataset = 0 lub dataset = 1)
 filter_option - wybrany filer z listy Enum klasy FilterOption
 save_directory - folder do którego zostaną zapisane zdjęcia po wykonaniu preprocessingu
 dataset - domyślna wartość 2. Dla wartości 0 i 1 wykonywany jest podział na klasy na podstawie nazwy pliku (tylko dla datasetu damevo: datset = 0 i RAVDESS: dataset = 1).
-
+# 
 ## Trening własnego modelu
-W modelu 
+# 
+Po przygotowaniu datasetu można przystąpić do treningu modelu wykorzystując skrypt model_treining.ipynb. Przed uruchomieniem skryptu należy dostosować następujące parametry na poczatku skryptu: 
+nr_classes - liczba klas w przygotowanych danych treningowych i testowych
+dataset_size - rozdzielczość zdjęć do których obrazy z datasetu zostaną przeskalowane w celu wytrenowania modelu. Modelowo (227, 227) dla AlexNet i (48,48) dla CNN2D. Najlepsze rezultaty osiąga się dla datasetów o zdjęciach w tej samej rozdzielczości, co docelowa
+nr_of_channel - liczba kanałów. 3 dla zbiorów danych w RGB (domyslnie), 1 dla zbiorów danych w skali szarości
+batch_size - 64 dla większości zbiorów danych wydaje się optymalne, jednak dla małych datsetów należy rozważyć zmniejszenie tej wartości
+dataset_path - ścieżka do zbioru z danymi (folder podzielony na 2 podfoldery - train oraz test, te z kolei powinny zawierać podfolder ze zdjęciami dla każdej z klas)
+nr_epochs - liczba epok dla których sieć będzie trenowana - dla AlexNet optymalna wartość to 30, dla CNN2D zazwyczaj w przedziale 50 - 100 w zależności od zbioru danych
+# 
 
 
-
- 
+ model_training.ipynb created based on:
+ https://www.kaggle.com/code/farneetsingh24/ck-facial-emotion-recognition-96-46-accuracy
