@@ -77,14 +77,33 @@ python main.py
 - pre_processor_classify.py: Zawiera klasę PreProcessor, implementującą główną logikę przetwarzania wstępnego oraz kilka innych przydatnych funkcji podczas przetwarzania wstępnego.
 - pre_processor_prepare_dataset.py: Nieznacznie zmodyfikowana wersja klasy PreProcessor, przystosowana do przygotowania datasetu do treningu.
 - prepare_dataset_from_photos.py: Skrypt pobierający zdjęcia ze ścieżki input_directory, a następnie wykonujący na nich preprocessing za pomocą klasy PreProcessor ze skryptu pre_processor_prepare_dataset. Przetworzone zdjęcia są zapisywane do ścieżki save_directory.
-- prepare_dataset_from_videos.py: Skrypt działający analogicznie jak prepare_dataset_from_photos.py, ale dla folderu z materiałami wideo.
+- prepare_dataset_from_video.py: Skrypt działający analogicznie jak prepare_dataset_from_photos.py, ale dla folderu z materiałami wideo.
 - folder other_useful_scripts: Inne skrypty niewymagane do działania programu, ale przydatne podczas przygotowywania datasetów (np. wyrównanie wielkości klas, parsery, wykreślanie wykresów, czy archiwalne wersje algorytmu wykonującego preprocessing).
 # 
 
+
+# W celu wytrenowania własnego modelu
+
+## Przygotowanie datasetu
+
+Dla datasetu ze zdjęciami:
+W skrypcie prepare_dataset_from_photos.py.
+wybrać:
+input_directory - folder z datasetem treningowym bądź testowym uprzednio podzielonym na klasy - każda z klas w osobnym podfolerze.
+filter_option - wybrany filer z listy Enum klasy FilterOption
+save_directory - folder do którego zostaną zapisane zdjęcia po wykonaniu preprocessingu
+
+Dla datasetu z materiałami wideo  (obsługiwane formaty: mp4 i mkv)
+W skrypcie prepare_dataset_from_photos.py.
+wybrać:
+input_directory - folder z datasetem treningowym bądź testowym uprzednio podzielonym na klasy - każda z klas w osobnym podfolerze (chyba, że wartość w dataset = 0 lub dataset = 1)
+filter_option - wybrany filer z listy Enum klasy FilterOption
+save_directory - folder do którego zostaną zapisane zdjęcia po wykonaniu preprocessingu
+dataset - domyślna wartość 2. Dla wartości 0 i 1 wykonywany jest podział na klasy na podstawie nazwy pliku (tylko dla datasetu damevo: datset = 0 i RAVDESS: dataset = 1).
+
 ## Trening własnego modelu
- ```bash
-# W celu wytrenowania własnego modelu...
-```
+W modelu 
+
 
 
  
