@@ -1,5 +1,6 @@
 
 ---
+# PL
 
 <div align="center">    
  
@@ -21,14 +22,14 @@ Conference
 -->   
 </div>
  
-## Opis   
+# Opis   
 Celem pracy było zbadanie wpływu różnych metod wstępnego przetwarzania obrazu na skuteczność rozpoznawania emocji przez sieci neuronowe na podstawie zdjęć i materiałów wideo. Zbadane metody to normalizacja przestrzenna łączona z takimi metodami jak normalizacja intensywności metodą CLAHE, wykrywanie krawędzi filtrem Sobela i metodą Canny, oraz dodawanie i odejmowanie klatek. W pracy wykorzystano klasyfikatory AlexNet oraz dedykowaną sieć CNN2D. Spośród wszystkich przetestowanych metod najskuteczniejsza okazała się ta, oparta o dodawanie klatek, polegająca na przypidsywaniu 3 kolejnych klatek w małych odstępach czasu do kanałów R, G i B. Metoda ta, do działania wykorzystuje także normalizację przestrzenną, pozycjonującą i skalującą twarz w oparciu o pozycję punktów charakterysytcznych twarzy. Ogólny model rozwiązania prezentuje się następująco: 
 #
 
 ![ModelRoziwazania](https://github.com/user-attachments/assets/05c95074-30d5-4596-9cce-79f8b4bb4965)
 
 
-## Wyniki
+# Wyniki
 W przypadku wykorzystania metody opartej o dodawnie klatek i klasyfikatora AlexNet osiągnięta dokładność dla bazy RAVDESS wyniosła 70,09%. Pozostałe wyniki przedstawiono w poniższych tabelach.
 
 Wyniki dla baz danych ze zdjęciami (klasyfikator CNN2D):
@@ -53,7 +54,7 @@ Wyniki dla materiałów wideo (baza RAVDESS - 7 emocji: spokój, radość, smute
 
 
 
-## Jak uruchomić
+# Jak uruchomić
 Najpierw zainstaluj wymagane zależności: 
 ```bash
 # Sklonuj repozytorium  
@@ -81,22 +82,22 @@ python main.py
 - folder other_useful_scripts: Inne skrypty niewymagane do działania programu, ale przydatne podczas przygotowywania datasetów (np. wyrównanie wielkości klas, parsery, wykreślanie wykresów, czy archiwalne wersje algorytmu wykonującego preprocessing).
 # 
 
-## Przygotowanie datasetu
+# Przygotowanie datasetu
 
-# Dla datasetu ze zdjęciami:
-W skrypcie prepare_dataset_from_photos.py wybrać:
+## Dla datasetu ze zdjęciami:
+W skrypcie prepare_dataset_from_photos.py zmienić:
 - input_directory - folder z datasetem treningowym bądź testowym uprzednio podzielonym na klasy - każda z klas w osobnym podfolerze.
-- filter_option - wybrany filer z listy Enum klasy FilterOption
-- save_directory - folder do którego zostaną zapisane zdjęcia po wykonaniu preprocessingu
+- filter_option - wybrany filer z listy 'Enum' klasy 'FilterOption'
+- save_directory - folder, do którego zostaną zapisane zdjęcia po wykonaniu preprocessingu
 # 
-# Dla datasetu z materiałami wideo  (obsługiwane formaty: mp4 i mkv)
+## Dla datasetu z materiałami wideo  (obsługiwane formaty: mp4 i mkv)
 W skrypcie prepare_dataset_from_photos.py wybrać:
 - input_directory - folder z datasetem treningowym bądź testowym uprzednio podzielonym na klasy - każda z klas w osobnym podfolerze (chyba, że wartość w dataset = 0 lub dataset = 1)
-- filter_option - wybrany filer z listy Enum klasy FilterOption
+- filter_option - wybrany filer z listy 'Enum' klasy 'FilterOption'
 - save_directory - folder do którego zostaną zapisane zdjęcia po wykonaniu preprocessingu
 - dataset - domyślna wartość 2. Dla wartości 0 i 1 wykonywany jest podział na klasy na podstawie nazwy pliku (tylko dla datasetu damevo: datset = 0 i RAVDESS: dataset = 1).
 # 
-## Trening własnego modelu
+# Trening własnego modelu
 # 
 Po przygotowaniu datasetu można przystąpić do treningu modelu wykorzystując skrypt model_treining.ipynb. Przed uruchomieniem skryptu należy dostosować następujące parametry na poczatku skryptu: 
 - nr_classes - liczba klas w przygotowanych danych treningowych i testowych
@@ -107,6 +108,8 @@ Po przygotowaniu datasetu można przystąpić do treningu modelu wykorzystując 
 - nr_epochs - liczba epok dla których sieć będzie trenowana - dla AlexNet optymalna wartość to 30, dla CNN2D zazwyczaj w przedziale 50 - 100 w zależności od zbioru danych
 # 
 
-
- model_training.ipynb created based on:
- https://www.kaggle.com/code/farneetsingh24/ck-facial-emotion-recognition-96-46-accuracy
+# Bibliografis:
+ - Vadim Pisarevsky. Opencv - haarcascades subdirectory, 2020. URL https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.
+xml.
+- Shubham Rath. face-detection-with-opencv-and-dnn, 2018. URL https://github.com/sr6033/face-detection-with-OpenCV-and-DNN.git.
+- Farneet Singh. Ck+ facial emotion recognition - notebook, 2023. URL https://www.kaggle.com/code/farneetsingh24/ck-facial-emotion-recognition-96-46-accuracy. [Online; accessed 12 May, 2024, APACHE LICENSE, VERSION 2.0].
