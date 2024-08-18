@@ -27,15 +27,9 @@ def create_new_folder(path, sub_folder):
 # Define the directory containing the MKV files
 input_directory = r"F:\RAVDESS dataset no neutral\test"
 
-save_folder = r"F:\3frames_nomask\test"
-filter_option = FiltersOption.NO_FILTER
-
-# input_directory = r"G:\do_magisterki\ja\test"
-# filter_option = FiltersOption.NO_FILTER
-# save_folder = r"G:\do_magisterki\ja\test wynik\substraction_minus"
-
-substraction = False
-dataset = 1 # 0 for devemo, 1 for RAVDESS, 2 for other
+save_folder = r"F:\3frames_nomask\testy"
+filter_option = FiltersOption.ADD_FRAMES
+dataset = 1 # 0 for devemo, 1 for RAVDESS and other
 
 # Create output directory if it doesn't exist
 if not os.path.exists(save_folder):
@@ -167,7 +161,6 @@ for subfolder in subfolders:
                 new_file_name = rearrange_name_for_RAVDESS(file_name)
             else:
                 new_file_name = file_name
-            fd.run_face_detection("Nagranie wideo", filter_option, video_path,
-                                  frame_substraction=substraction, file_name = new_file_name, save_path = save_path)
+            fd.run_face_detection("Nagranie wideo", filter_option, video_path, file_name = new_file_name, save_path = save_path)
 
 print("Conversion complete.")

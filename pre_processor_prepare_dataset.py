@@ -6,6 +6,8 @@ import sys
 import cv2
 import dlib
 import numpy as np
+
+import filters
 from filters import FiltersOption, Filters
 
 
@@ -127,7 +129,6 @@ class PreProcessor:
     def __init__(self):
         self.prev_frames = []
         self.first = True
-        self.frame_substraction = False
         self.filter_option = 0
         self.active_mode = 0
         self.CAMERA_MODE, self.VIDEO_MODE, self.PHOTO_MODE = 0, 1, 2
@@ -219,8 +220,10 @@ class PreProcessor:
                 output_frame, rotaion_matrix = rotate_frame(filered_frame, angle, center)
                 output_frame = self.apply_mask(output_frame, left_eye, right_eye, nose, center, rotaion_matrix)
 
-                iteration = self.save_frame(output_frame, frame, save_path, file_name, iteration)
-                #iteration = self.three_frames_into_three_channels(output_frame, save_path, file_name, iteration)
+                if self.filter_option == filters.FiltersOption.ADD_FRAMES:
+                    iteration = self.three_frames_into_three_channels(output_frame, save_path, file_name, iteration)
+                else:
+                    iteration = self.save_frame(output_frame, frame, save_path, file_name, iteration)
 
             elif save_path and self.active_mode == self.PHOTO_MODE:
                 frame, _, _ = resize_frame(frame, 96, 96)

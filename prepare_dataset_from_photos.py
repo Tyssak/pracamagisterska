@@ -24,9 +24,9 @@ def create_new_folder(path, sub_folder):
 
 # Define the directory containing the MKV files
 input_directory = r"G:\do_magisterki\datasety\FER2013\archive\test"
-filter_option = FiltersOption.CLAHE
+filter_option = FiltersOption.ADD_FRAMES
 
-save_directory = r"G:\do_magisterki\datasety\FER2013\227\test"
+save_directory = r"G:\do_magisterki\datasety\FER2013\227\testy"
 
 processed_images = 0
 total_images = sum(len(files) for _, _, files in os.walk(input_directory))
@@ -44,8 +44,7 @@ for subfolder in subfolders:
         save_path = os.path.join(save_folder, file_name)
         fd = PreProcessor()
         #print(img_path)
-        fd.run_face_detection("Zdjęcia", filter_option, img_path,
-                              frame_substraction=False, file_name=file_name, save_path=save_path)
+        fd.run_face_detection("Zdjęcia", filter_option, img_path, file_name=file_name, save_path=save_path)
         processed_images += 1
 
     print(f"Processed {processed_images} of {total_images}")
