@@ -11,7 +11,7 @@
 The goal of this work was to examine the impact of various image preprocessing methods on the effectiveness of emotion recognition by neural networks based on photos and video recordings. The methods examined include spatial normalization combined with techniques such as intensity normalization using CLAHE, edge detection with Sobel and Canny filters, and frame addition and subtraction. The study employed the AlexNet classifiers and a dedicated CNN2D network. Among all tested methods, the most effective was the frame addition method, which involves assigning 3 consecutive frames at short time intervals to the R, G, and B channels. This method also uses spatial normalization to position and scale the face based on the location of facial landmarks. The overall solution model is as follows:
 #
 
-![ModelRoziwazania](https://github.com/user-attachments/assets/05c95074-30d5-4596-9cce-79f8b4bb4965)
+![SolutionModel](https://github.com/user-attachments/assets/b797227f-ab93-4f9b-a134-84d727d9fc17)
 
 
 # Results
